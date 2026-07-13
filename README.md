@@ -15,7 +15,6 @@ Aplikasi katalog instrumen untuk **Pusat Standardisasi Instrumen MKG (PSIMKG)**.
 
 ```bash
 cp .env.example .env.local
-# Optional: leave NEXT_PUBLIC_API_URL empty / point to /instrument/api on same Next process
 npm install
 npm run dev
 # → http://127.0.0.1:3011/instrument/
@@ -23,20 +22,57 @@ npm run dev
 
 Admin default password: `psimkg-admin`
 
-## Server deploy (`/var/www/instrument`)
+## Server deploy dengan PM2 (`/var/www/instrument`)
+
+Server production memakai **PM2** (bukan wajib systemd).
+
+### Setup pertama kali
 
 ```bash
 cd /var/www/instrument
+# atau: git clone https://github.com/kensein/instrument.git /var/www/instrument
+
 cp .env.example .env
 cp .env.api.example .env.api
-# edit secrets
+# edit .env dan .env.api (ADMIN_PASSWORD, CORS, dll.)
+
 npm ci
 npm run build
-sudo cp deploy/instrument-web.service /etc/systemd/system/
-sudo cp deploy/instrument-api.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now instrument-web instrument-api
+
+# Pastikan pm2 terpasang: npm i -g pm2
+pm2 start ecosystem.config.cjs
+pm2 save
+pm2 startup   # ikuti perintah yang dicetak (systemd hook)
 ```
+
+Proses PM2:
+
+- `instrument-web` → Next.js di `127.0.0.1:3011`
+- `instrument-api` → API di `127.0.0.1:8011`
+
+### Update (pull berikutnya)
+
+```bash
+cd /var/www/instrument
+git pull origin master
+npm ci
+npm run build
+pm2 reload ecosystem.config.cjs
+# atau: pm2 restart instrument-web instrument-api
+pm2 save
+```
+
+### Cek status
+
+```bash
+pm2 status
+pm2 logs instrument-web --lines 50
+pm2 logs instrument-api --lines 50
+```
+
+### Alternatif systemd
+
+File `deploy/instrument-web.service` dan `deploy/instrument-api.service` tetap tersedia jika suatu saat tidak memakai PM2. **Jangan jalankan PM2 dan systemd bersamaan** untuk service yang sama.
 
 ## Apache (tambahkan di vhost portal **sebelum** catch-all `:3001`)
 
@@ -47,8 +83,6 @@ ProxyPass        /instrument      http://127.0.0.1:3011/instrument
 ProxyPassReverse /instrument      http://127.0.0.1:3011/instrument
 ```
 
-Lalu:
-
 ```bash
 sudo apache2ctl configtest && sudo systemctl reload apache2
 ```
@@ -57,8 +91,8 @@ Jangan overwrite seluruh vhost live — hanya sisipkan blok di atas.
 
 ## Navigasi lintas-app
 
-Header/footer meniru portal PSIMKG. Menu portal memakai `<a href="/...">` same-origin (bukan Next `Link`), agar Apache mengarahkan ke portal atau sub-app lain (`/meteorologi`, `/p3dn/`, `/psiidn/`, dll.). Item **Instrument** aktif di `/instrument/`.
+Header/footer meniru portal PSIMKG. Menu portal memakai `<a href="/...">` same-origin (bukan Next `Link`). Item **Instrument** aktif di `/instrument/`.
 
 ## Logo
 
-Salinan logo portal: `public/bmkg-logo.png`
+`public/bmkg-logo.png`

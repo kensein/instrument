@@ -5,12 +5,40 @@
  * Shares JSON store with the Next.js app under data/store/.
  */
 import http from "node:http";
+import fsSync from "node:fs";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
+
+function loadEnvFile(filePath) {
+  try {
+    const text = fsSync.readFileSync(filePath, "utf8");
+    for (const raw of text.split(/\r?\n/)) {
+      const line = raw.trim();
+      if (!line || line.startsWith("#")) continue;
+      const i = line.indexOf("=");
+      if (i < 1) continue;
+      const key = line.slice(0, i).trim();
+      let val = line.slice(i + 1).trim();
+      if (
+        (val.startsWith('"') && val.endsWith('"')) ||
+        (val.startsWith("'") && val.endsWith("'"))
+      ) {
+        val = val.slice(1, -1);
+      }
+      if (!(key in process.env)) process.env[key] = val;
+    }
+  } catch {
+    /* optional */
+  }
+}
+
+loadEnvFile(path.join(ROOT, ".env.api"));
+loadEnvFile(path.join(ROOT, ".env"));
+
 const STORE_DIR = path.join(ROOT, "data", "store");
 const EQUIPMENT_FILE = path.join(STORE_DIR, "equipment.json");
 const BOOKINGS_FILE = path.join(STORE_DIR, "bookings.json");
