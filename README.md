@@ -83,11 +83,30 @@ ProxyPass        /instrument      http://127.0.0.1:3011/instrument
 ProxyPassReverse /instrument      http://127.0.0.1:3011/instrument
 ```
 
+### CSP (wajib untuk Next.js)
+
+CSP portal dengan `script-src 'self' 'nonce-…'` **memblokir** script inline Next.js → jam kosong, login admin gagal, error `Connection closed`.
+
+Di vhost HTTPS, kecualikan `/instrument` dari CSP portal, lalu set CSP yang mengizinkan Next:
+
+```apache
+SetEnvIf Request_URI "^/instrument" instrument_path
+
+# CSP portal yang sudah ada — tambahkan env=!instrument_path
+# Header always set Content-Security-Policy "…csp-portal…" env=!embed_path env=!instrument_path
+
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" env=instrument_path
+```
+
+Lihat juga `deploy/apache-instrument.conf`.
+
 ```bash
 sudo apache2ctl configtest && sudo systemctl reload apache2
 ```
 
-Jangan overwrite seluruh vhost live — hanya sisipkan blok di atas.
+Verifikasi di DevTools → Network → response header halaman `/instrument/`: `Content-Security-Policy` harus berisi `unsafe-inline` (bukan hanya `nonce-…` portal).
+
+Jangan overwrite seluruh vhost live — hanya sisipkan ProxyPass + penyesuaian CSP.
 
 ## Navigasi lintas-app
 
