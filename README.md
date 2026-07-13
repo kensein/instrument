@@ -85,26 +85,35 @@ ProxyPassReverse /instrument      http://127.0.0.1:3011/instrument
 
 ### CSP (wajib untuk Next.js)
 
-CSP portal dengan `script-src 'self' 'nonce-…'` **memblokir** script inline Next.js → jam kosong, login admin gagal, error `Connection closed`.
+CSP ketat portal (`script-src 'self'`, dan Cloudflare menambah `nonce-…`) **memblokir** inline script Next.js → jam kosong, login admin gagal, `Connection closed`.
 
-Di vhost HTTPS, kecualikan `/instrument` dari CSP portal, lalu set CSP yang mengizinkan Next:
+Aplikasi ini **mengirim CSP-nya sendiri dengan nonce** lewat `src/proxy.ts` (pola resmi Next.js: `script-src 'self' 'nonce-…' 'strict-dynamic'`). Yang perlu dilakukan di server hanya: **Apache berhenti menimpa CSP untuk `/instrument`**, agar header CSP dari Next diteruskan.
+
+Di vhost HTTPS, kecualikan `/instrument` dari CSP portal:
 
 ```apache
 SetEnvIf Request_URI "^/instrument" instrument_path
 
-# CSP portal yang sudah ada — tambahkan env=!instrument_path
+# Pada baris CSP portal yang sudah ada, tambahkan env=!instrument_path:
 # Header always set Content-Security-Policy "…csp-portal…" env=!embed_path env=!instrument_path
-
-Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" env=instrument_path
 ```
 
-Lihat juga `deploy/apache-instrument.conf`.
+Jika CSP portal di-set global, override di vhost (cukup unset — Next yang mengatur):
+
+```apache
+<LocationMatch "^/instrument">
+    Header always unset Content-Security-Policy
+    Header unset Content-Security-Policy
+</LocationMatch>
+```
 
 ```bash
 sudo apache2ctl configtest && sudo systemctl reload apache2
 ```
 
-Verifikasi di DevTools → Network → response header halaman `/instrument/`: `Content-Security-Policy` harus berisi `unsafe-inline` (bukan hanya `nonce-…` portal).
+Verifikasi (browser sungguhan, bukan curl): DevTools → Network → header respons `/instrument/admin/login` → `Content-Security-Policy` harus memuat `script-src 'self' 'nonce-…' 'strict-dynamic'` (nonce dari Next). Jika masih hanya `script-src 'self'`, Apache masih menimpa.
+
+Cloudflare: fitur **JavaScript Detections / Bot Fight Mode** menambah nonce sendiri — tetap kompatibel dengan nonce Next. Jika masih diblokir, nonaktifkan "JavaScript Detections" (Security → Bots) untuk domain ini. Lihat `deploy/apache-instrument.conf`.
 
 Jangan overwrite seluruh vhost live — hanya sisipkan ProxyPass + penyesuaian CSP.
 

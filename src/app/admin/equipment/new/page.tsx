@@ -3,6 +3,9 @@ import Link from "next/link";
 import { EquipmentEditor } from "@/components/admin/equipment-editor";
 import { Button } from "@/components/ui/button";
 
+// Nonce-based CSP requires dynamic rendering (nonce is injected per request).
+export const dynamic = "force-dynamic";
+
 export default function NewEquipmentPage() {
   return (
     <div className="space-y-6">
