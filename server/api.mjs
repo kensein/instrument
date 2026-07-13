@@ -49,7 +49,8 @@ const PORT = Number(process.env.PORT || 8011);
 const CORS_ORIGIN = process.env.CORS_ORIGIN || "https://psimkg.bmkg.go.id";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "psimkg-admin";
 const ADMIN_COOKIE = "psimkg_admin_session";
-const SESSION = `psimkg-session:${ADMIN_PASSWORD}`;
+/** Must match src/lib/auth-shared.ts ADMIN_SESSION_VALUE */
+const SESSION = process.env.ADMIN_SESSION_SECRET || "psimkg-session-active";
 
 async function ensureStore() {
   await fs.mkdir(STORE_DIR, { recursive: true });
@@ -173,15 +174,22 @@ const server = http.createServer(async (req, res) => {
         send(res, 401, { error: "Password salah" });
         return;
       }
+      // Prefer Next.js /admin/session for browser login (Apache does not proxy that to :8011).
+      const secure =
+        String(req.headers["x-forwarded-proto"] || "").includes("https") ||
+        CORS_ORIGIN.startsWith("https");
       send(res, 200, { success: true }, {
-        "Set-Cookie": `${ADMIN_COOKIE}=${encodeURIComponent(SESSION)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}`,
+        "Set-Cookie": `${ADMIN_COOKIE}=${SESSION}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}${secure ? "; Secure" : ""}`,
       });
       return;
     }
 
     if (req.method === "DELETE" && pathname === "/auth/login") {
+      const secure =
+        String(req.headers["x-forwarded-proto"] || "").includes("https") ||
+        CORS_ORIGIN.startsWith("https");
       send(res, 200, { success: true }, {
-        "Set-Cookie": `${ADMIN_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0`,
+        "Set-Cookie": `${ADMIN_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0${secure ? "; Secure" : ""}`,
       });
       return;
     }

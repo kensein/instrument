@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 import type { NavItem, NavMenu } from "@/config/navigation";
@@ -75,7 +75,6 @@ export default function NavDropdown({
 }: NavDropdownProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
   const active = forceActive;
   const menuLabel = t(menu.labelKey);
 
@@ -123,32 +122,22 @@ export default function NavDropdown({
     );
   }
 
+  // Desktop: CSS group-hover (matches portal) so menus open without relying on JS mouse state.
   return (
-    <div
-      ref={ref}
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="group relative">
       <a
         href={menu.basePath}
-        className={`inline-flex items-center gap-1 whitespace-nowrap rounded px-3 py-2 text-sm font-medium transition-all duration-200 ${
-          active || open
+        className={`inline-flex items-center gap-1 whitespace-nowrap rounded px-3 py-2 text-sm font-medium transition-all duration-200 group-hover:border-b-2 group-hover:border-bmkg-accent group-hover:bg-bmkg-light group-hover:text-bmkg-navy group-focus-within:border-b-2 group-focus-within:border-bmkg-accent group-focus-within:bg-bmkg-light group-focus-within:text-bmkg-navy ${
+          active
             ? "border-b-2 border-bmkg-accent bg-bmkg-light text-bmkg-navy"
             : "text-gray-700 hover:bg-bmkg-light hover:text-bmkg-navy"
         }`}
       >
         {menuLabel}
-        <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        />
+        <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />
       </a>
       <div
-        className={`absolute top-full left-0 z-50 w-72 origin-top pt-1 transition-all duration-200 ${
-          open
-            ? "visible translate-y-0 opacity-100"
-            : "pointer-events-none invisible -translate-y-1 opacity-0"
-        }`}
+        className="invisible absolute top-full left-0 z-[100] w-72 origin-top translate-y-1 pt-1 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
       >
         <div className="rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
           {menu.items.map((item) => (
@@ -157,10 +146,7 @@ export default function NavDropdown({
               item={item}
               desktop
               active={item.href.startsWith("/instrument")}
-              onClick={() => {
-                setOpen(false);
-                onNavigate?.();
-              }}
+              onClick={onNavigate}
               className="block px-4 py-2.5 transition-colors duration-150 hover:bg-bmkg-light"
             />
           ))}

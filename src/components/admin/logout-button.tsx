@@ -3,13 +3,16 @@
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 
-import { apiUrl } from "@/lib/paths";
+import { BASE_PATH } from "@/lib/paths";
 
 export function AdminLogoutButton() {
   const router = useRouter();
 
   async function handleLogout() {
-    await fetch(apiUrl("/auth/login"), { method: "DELETE" });
+    await fetch(`${BASE_PATH}/admin/session`, {
+      method: "DELETE",
+      credentials: "same-origin",
+    });
     router.push("/admin/login");
     router.refresh();
   }

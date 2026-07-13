@@ -6,6 +6,7 @@ import {
   verifyPassword,
 } from "@/lib/auth-shared";
 
+/** True when the public request is HTTPS (incl. behind Apache). */
 function cookieSecure(request: Request) {
   const proto = request.headers.get("x-forwarded-proto");
   if (proto) return proto.split(",")[0]?.trim() === "https";
@@ -16,16 +17,17 @@ function cookieSecure(request: Request) {
   }
 }
 
-/** @deprecated Prefer POST/DELETE /admin/session (not proxied to :8011). */
 export async function POST(request: Request) {
-  const body = await request.json();
-  const password = String(body.password || "");
+  let password = "";
+  try {
+    const body = await request.json();
+    password = String(body.password || "");
+  } catch {
+    return NextResponse.json({ error: "Body tidak valid" }, { status: 400 });
+  }
 
   if (!verifyPassword(password)) {
-    return NextResponse.json(
-      { error: "Password salah" },
-      { status: 401 }
-    );
+    return NextResponse.json({ error: "Password salah" }, { status: 401 });
   }
 
   const response = NextResponse.json({ success: true });

@@ -16,11 +16,11 @@ export default function PortalHeader() {
   const closeMobile = () => setIsMenuOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 overflow-visible border-b border-gray-100 bg-white shadow-sm">
       <TopBar />
-      <div className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex min-h-16 items-center justify-between gap-2 py-3">
+      <div className="overflow-visible bg-white">
+        <div className="mx-auto max-w-7xl overflow-visible px-4 sm:px-6 lg:px-8">
+          <div className="flex min-h-16 items-center justify-between gap-2 overflow-visible py-3">
             <a
               href="/"
               className="flex min-w-0 shrink-0 items-center gap-3"
@@ -42,7 +42,7 @@ export default function PortalHeader() {
               </div>
             </a>
 
-            <nav className="hidden flex-wrap items-center justify-end gap-0.5 xl:flex">
+            <nav className="relative z-[60] hidden items-center justify-end gap-0.5 overflow-visible xl:flex">
               {navMenus.map((menu) => (
                 <NavDropdown
                   key={menu.id}

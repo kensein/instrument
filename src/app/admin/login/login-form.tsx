@@ -7,7 +7,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { apiUrl } from "@/lib/paths";
+import { BASE_PATH } from "@/lib/paths";
 
 export default function AdminLoginForm() {
   const router = useRouter();
@@ -21,18 +21,25 @@ export default function AdminLoginForm() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    const res = await fetch(apiUrl("/auth/login"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
-    setLoading(false);
-    if (!res.ok) {
-      setError("Password salah. Coba lagi.");
-      return;
+    try {
+      // Hit Next.js (port 3011) — not /instrument/api which Apache proxies to :8011
+      const res = await fetch(`${BASE_PATH}/admin/session`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ password }),
+      });
+      if (!res.ok) {
+        setError("Password salah. Coba lagi.");
+        return;
+      }
+      router.push(next.startsWith("/") ? next : "/admin");
+      router.refresh();
+    } catch {
+      setError("Gagal menghubungi server. Coba lagi.");
+    } finally {
+      setLoading(false);
     }
-    router.push(next);
-    router.refresh();
   }
 
   return (
@@ -72,10 +79,6 @@ export default function AdminLoginForm() {
             )}
           </Button>
         </form>
-        <p className="mt-4 text-xs text-slate-500">
-          Default lokal:{" "}
-          <code className="rounded bg-slate-100 px-1">psimkg-admin</code>
-        </p>
       </div>
     </div>
   );
