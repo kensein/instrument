@@ -1,0 +1,762 @@
+[
+  {
+    "id": "M01",
+    "category": "Meteorologi",
+    "name": "Automatic Weather Station (AWS)",
+    "price": 2500000,
+    "description": "Stasiun cuaca otomatis terintegrasi untuk mengukur suhu, kelembapan, angin, dan curah hujan.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Suhu ±0.2°C; RH ±2%; Angin ±0.3 m/s; Hujan ±2%"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "12 VDC / solar panel 40 W + baterai 65 Ah"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Tiang 10 m; enclosure 400 × 300 × 200 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "±45 kg (termasuk tiang dan sensor)"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-40°C hingga +70°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "RS-485, SDI-12, Ethernet, GSM/4G"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Logger 16 channel; sampling 1 detik – 1 jam"
+      }
+    ]
+  },
+  {
+    "id": "M02",
+    "category": "Meteorologi",
+    "name": "Anemometer Ultrasonic",
+    "price": 500000,
+    "description": "Pengukur arah dan kecepatan angin presisi tinggi tanpa bagian bergerak.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Kecepatan ±2% atau ±0.1 m/s; Arah ±2°"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "10–30 VDC, konsumsi < 50 mA"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Ø 160 mm × tinggi 300 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "1.2 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-40°C hingga +70°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "NMEA 0183, Modbus RTU, analog 4–20 mA"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Rentang 0–60 m/s; resolusi 0.01 m/s"
+      }
+    ]
+  },
+  {
+    "id": "M03",
+    "category": "Meteorologi",
+    "name": "Barometer Digital",
+    "price": 300000,
+    "description": "Alat pengukur tekanan udara atmosferik presisi tinggi.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±0.3 hPa (pada 0–40°C)"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "5–24 VDC atau baterai internal Li-ion"
+      },
+      {
+        "label": "Dimensi",
+        "value": "120 × 80 × 40 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "0.35 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +60°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "USB, RS-232, I²C"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Rentang 500–1100 hPa; resolusi 0.01 hPa"
+      }
+    ]
+  },
+  {
+    "id": "M04",
+    "category": "Meteorologi",
+    "name": "Thermohygrometer Portable",
+    "price": 200000,
+    "description": "Pengukur suhu dan kelembapan udara portabel untuk survei lapangan.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Suhu ±0.3°C; RH ±2% RH (10–90%)"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Baterai AA × 3 atau USB-C"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Probe Ø 12 mm × 150 mm; body 180 × 70 × 30 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "0.28 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +60°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "Layar LCD; logging internal CSV via USB"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Memori 32.000 data point; IP65"
+      }
+    ]
+  },
+  {
+    "id": "M05",
+    "category": "Meteorologi",
+    "name": "Ceilometer",
+    "price": 3000000,
+    "description": "Alat berbasis laser untuk mengukur tinggi dasar awan dan profil aerosol.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Tinggi awan ±5 m atau ±1% (mana yang lebih besar)"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "100–240 VAC / 24 VDC, ~50 W"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Head 500 × 350 × 700 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "28 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-40°C hingga +55°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "Ethernet TCP/IP, RS-422"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Laser 905 nm Class 1M; jangkauan hingga 15 km"
+      }
+    ]
+  },
+  {
+    "id": "M06",
+    "category": "Meteorologi",
+    "name": "Pyranometer",
+    "price": 750000,
+    "description": "Sensor untuk mengukur radiasi matahari global (solar irradiance).",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Spektral ISO 9060 Class A; ketidakpastian < 2%"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Pasif (termopile) atau amplifier 5–24 VDC"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Ø 150 mm × tinggi 90 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "0.9 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-40°C hingga +80°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "mV (pasif) / 0–1 V / 4–20 mA"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Rentang spektral 285–3000 nm; sensitivitas ~10 µV/W·m⁻²"
+      }
+    ]
+  },
+  {
+    "id": "M07",
+    "category": "Meteorologi",
+    "name": "Rain Gauge Tipping Bucket",
+    "price": 400000,
+    "description": "Penakar hujan otomatis untuk mengukur intensitas dan akumulasi curah hujan.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±2% pada intensitas 0–50 mm/jam"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Reed switch pasif / 5–12 VDC dengan heater opsional"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Orifice Ø 200 mm; tinggi 400 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "3.5 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +70°C (dengan heater)"
+      },
+      {
+        "label": "Output Data",
+        "value": "Pulse (0.2 mm/tip), SDI-12"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Resolusi 0.2 mm; material aluminium anodized"
+      }
+    ]
+  },
+  {
+    "id": "K01",
+    "category": "Klimatologi",
+    "name": "Automatic Agroclimate Station (AAWS)",
+    "price": 2500000,
+    "description": "Stasiun iklim pertanian untuk pemantauan parameter cuaca spesifik agrikultur.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Suhu tanah ±0.2°C; RH daun ±3%; radiasi ±5%"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Solar 60 W + baterai 100 Ah"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Tiang 2–3 m; enclosure IP66"
+      },
+      {
+        "label": "Berat",
+        "value": "±38 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +60°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "LoRaWAN, 4G, RS-485"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Sensor: suhu/RH udara, tanah, daun, radiasi PAR, hujan, angin"
+      }
+    ]
+  },
+  {
+    "id": "K02",
+    "category": "Klimatologi",
+    "name": "Campbell Stokes",
+    "price": 250000,
+    "description": "Pencatat lama penyinaran matahari konvensional dengan pias kertas.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±0.1 jam (sesuai kalibrasi bola kaca)"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Tidak memerlukan daya listrik"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Bola kaca Ø 101.6 mm; frame 250 × 200 × 180 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "4.2 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-10°C hingga +50°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "Pias karta harian (manual reading)"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Focal length standar WMO; mount azimuth/elevasi"
+      }
+    ]
+  },
+  {
+    "id": "K03",
+    "category": "Klimatologi",
+    "name": "Panci Penguapan Kelas A",
+    "price": 150000,
+    "description": "Alat standar untuk mengukur laju penguapan air permukaan (evaporasi).",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±1 mm (dengan stilling well dan hook gauge)"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Tidak memerlukan daya (manual) / sensor level opsional"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Ø 120.7 cm × tinggi 25.4 cm (Class A)"
+      },
+      {
+        "label": "Berat",
+        "value": "±25 kg (kosong, stainless steel)"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "0°C hingga +50°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "Pembacaan manual hook gauge / logger level"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Sesuai standar WMO; termasuk stilling well"
+      }
+    ]
+  },
+  {
+    "id": "K04",
+    "category": "Klimatologi",
+    "name": "Soil Thermometer Set",
+    "price": 200000,
+    "description": "Set termometer untuk mengukur suhu tanah pada berbagai kedalaman.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±0.2°C (skala -10 hingga +50°C)"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Tidak memerlukan daya (merkuri/alkohol) / digital opsional"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Probe 5, 10, 20, 50, 100 cm"
+      },
+      {
+        "label": "Berat",
+        "value": "Set lengkap ±2.5 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +60°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "Skala visual atau logger digital PT100"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Set 5 kedalaman; tube stainless steel"
+      }
+    ]
+  },
+  {
+    "id": "K05",
+    "category": "Klimatologi",
+    "name": "Lysimeter",
+    "price": 800000,
+    "description": "Alat ukur evapotranspirasi aktual pada tanaman dan tanah.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Load cell ±0.05% FS; ET ±0.1 mm/hari"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "12–24 VDC, ~15 W"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Kolom tanah Ø 80 cm × kedalaman 100 cm"
+      },
+      {
+        "label": "Berat",
+        "value": "±120 kg (tanpa tanah)"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-10°C hingga +50°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "RS-485 Modbus, SDI-12, analog mV"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Kapasitas timbang hingga 2000 kg; drain collector"
+      }
+    ]
+  },
+  {
+    "id": "K06",
+    "category": "Klimatologi",
+    "name": "High Volume Air Sampler (HVAS)",
+    "price": 1200000,
+    "description": "Alat pengambil sampel udara untuk mengukur konsentrasi partikulat (SPM/PM10).",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Laju alir ±2% (kalibrasi orifice)"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "220 VAC, motor 1.5 HP"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Shelter 700 × 700 × 1400 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "45 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "0°C hingga +45°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "Timer digital; flow recorder chart"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Flow rate 1.1–1.7 m³/menit; filter 8×10 inci"
+      }
+    ]
+  },
+  {
+    "id": "K07",
+    "category": "Klimatologi",
+    "name": "Aktinograf Bimetal",
+    "price": 300000,
+    "description": "Pencatat radiasi matahari total secara mekanis dan kontinu.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±5% terhadap pyranometer referensi"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Mekanis (spring clock) / motor 1.5 V"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Body 280 × 180 × 150 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "3.8 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-10°C hingga +50°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "Pias kertas harian/mingguan"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Elemen bimetal black/white; chart drum 24 jam"
+      }
+    ]
+  },
+  {
+    "id": "G01",
+    "category": "Geofisika",
+    "name": "Seismograph Broadband",
+    "price": 4000000,
+    "description": "Pencatat gempa bumi pita lebar untuk analisis aktivitas seismik detail.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Respons flat 0.008–50 Hz; noise < 1 ng/√Hz @ 1 Hz"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "10–16 VDC, konsumsi < 1 W"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Sensor Ø 170 mm × tinggi 160 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "Sensor 8.5 kg; digitizer 2.2 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +60°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "SEEDLink, MiniSEED, Ethernet/USB"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "3 komponen (Z,N,E); digitizer 24-bit 100–200 sps"
+      }
+    ]
+  },
+  {
+    "id": "G02",
+    "category": "Geofisika",
+    "name": "Accelerograph",
+    "price": 3500000,
+    "description": "Sensor percepatan tanah kuat (Strong Motion) untuk analisis ketahanan gempa.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±0.1% FS; linearitas < 0.1%"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "12 VDC / PoE, < 3 W"
+      },
+      {
+        "label": "Dimensi",
+        "value": "180 × 140 × 90 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "2.8 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +70°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "Ethernet, USB, MiniSEED"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Rentang ±2 g / ±4 g; bandwidth DC–200 Hz; 24-bit ADC"
+      }
+    ]
+  },
+  {
+    "id": "G03",
+    "category": "Geofisika",
+    "name": "Proton Precession Magnetometer",
+    "price": 2000000,
+    "description": "Alat ukur intensitas medan magnet bumi total untuk survei geofisika.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±0.1 nT; resolusi 0.01 nT"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "12 VDC baterai gel, ~2 A peak"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Konsol 280 × 220 × 100 mm; sensor Ø 80 × 150 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "Konsol 3.5 kg; sensor 1.8 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +50°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "USB, Bluetooth, GPS-tagged CSV"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Rentang 20.000–100.000 nT; cycle time 1–3 detik"
+      }
+    ]
+  },
+  {
+    "id": "G04",
+    "category": "Geofisika",
+    "name": "Gravimeter Relative",
+    "price": 5000000,
+    "description": "Alat ukur variasi gaya berat bumi dengan presisi sangat tinggi (mikroGal).",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±5 µGal; drift < 20 µGal/hari"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Internal Li-ion / 12–24 VDC eksternal"
+      },
+      {
+        "label": "Dimensi",
+        "value": "300 × 250 × 350 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "8.5 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-10°C hingga +45°C (termostatik)"
+      },
+      {
+        "label": "Output Data",
+        "value": "USB, Wi-Fi, software PC proprietary"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Rentang ±5000 mGal; resolusi 1 µGal; GPS sync"
+      }
+    ]
+  },
+  {
+    "id": "G05",
+    "category": "Geofisika",
+    "name": "Portable Tide Gauge",
+    "price": 1500000,
+    "description": "Pengukur pasang surut air laut portabel untuk survei pesisir.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "±1 cm (radar) / ±2 cm (pressure)"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Solar 20 W + baterai 20 Ah"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Enclosure IP67 300 × 250 × 150 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "6.5 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-10°C hingga +55°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "4G/LoRa, SDI-12, NMEA"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Radar 26 GHz atau pressure transducer; sampling 1–60 dtk"
+      }
+    ]
+  },
+  {
+    "id": "G06",
+    "category": "Geofisika",
+    "name": "Portable Lightning Detector",
+    "price": 1000000,
+    "description": "Pendeteksi aktivitas petir portabel untuk keamanan operasional luar ruang.",
+    "images": [],
+    "specs": [
+      {
+        "label": "Akurasi / Presisi",
+        "value": "Deteksi ±10% jarak; false alarm < 5%"
+      },
+      {
+        "label": "Sumber Daya",
+        "value": "Baterai Li-ion 7.4 V, standby 48 jam"
+      },
+      {
+        "label": "Dimensi",
+        "value": "Handheld 180 × 90 × 40 mm"
+      },
+      {
+        "label": "Berat",
+        "value": "0.45 kg"
+      },
+      {
+        "label": "Suhu Operasi",
+        "value": "-20°C hingga +55°C"
+      },
+      {
+        "label": "Output Data",
+        "value": "LCD + alarm audio; Bluetooth app"
+      },
+      {
+        "label": "Keterangan Tambahan",
+        "value": "Jangkauan deteksi hingga 60 km; mode CG/IC"
+      }
+    ]
+  }
+]

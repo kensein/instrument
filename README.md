@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Instrument PSIMKG — Deploy
 
-## Getting Started
+Aplikasi katalog instrumen untuk **Pusat Standardisasi Instrumen MKG (PSIMKG)**.
 
-First, run the development server:
+## Production URLs
+
+| Layanan | Bind | Publik |
+|---------|------|--------|
+| Frontend (Next.js) | `127.0.0.1:3011` | https://psimkg.bmkg.go.id/instrument/ |
+| API | `127.0.0.1:8011` | https://psimkg.bmkg.go.id/instrument/api/ |
+
+`basePath` / `NEXT_PUBLIC_BASE_PATH` = `/instrument`
+
+## Local development
 
 ```bash
+cp .env.example .env.local
+# Optional: leave NEXT_PUBLIC_API_URL empty / point to /instrument/api on same Next process
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# → http://127.0.0.1:3011/instrument/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Admin default password: `psimkg-admin`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Server deploy (`/var/www/instrument`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cd /var/www/instrument
+cp .env.example .env
+cp .env.api.example .env.api
+# edit secrets
+npm ci
+npm run build
+sudo cp deploy/instrument-web.service /etc/systemd/system/
+sudo cp deploy/instrument-api.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now instrument-web instrument-api
+```
 
-## Learn More
+## Apache (tambahkan di vhost portal **sebelum** catch-all `:3001`)
 
-To learn more about Next.js, take a look at the following resources:
+```apache
+ProxyPass        /instrument/api/ http://127.0.0.1:8011/
+ProxyPassReverse /instrument/api/ http://127.0.0.1:8011/
+ProxyPass        /instrument      http://127.0.0.1:3011/instrument
+ProxyPassReverse /instrument      http://127.0.0.1:3011/instrument
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Lalu:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+sudo apache2ctl configtest && sudo systemctl reload apache2
+```
 
-## Deploy on Vercel
+Jangan overwrite seluruh vhost live — hanya sisipkan blok di atas.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Navigasi lintas-app
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Header/footer meniru portal PSIMKG. Menu portal memakai `<a href="/...">` same-origin (bukan Next `Link`), agar Apache mengarahkan ke portal atau sub-app lain (`/meteorologi`, `/p3dn/`, `/psiidn/`, dll.). Item **Instrument** aktif di `/instrument/`.
+
+## Logo
+
+Salinan logo portal: `public/bmkg-logo.png`

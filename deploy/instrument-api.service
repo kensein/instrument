@@ -1,0 +1,15 @@
+[Unit]
+Description=PSIMKG Instrument API (port 8011)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/instrument
+EnvironmentFile=/var/www/instrument/.env.api
+ExecStart=/usr/bin/node server/api.mjs
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

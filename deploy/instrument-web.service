@@ -1,0 +1,15 @@
+[Unit]
+Description=PSIMKG Instrument Next.js (port 3011)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/instrument
+EnvironmentFile=/var/www/instrument/.env
+ExecStart=/usr/bin/npm run start
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
